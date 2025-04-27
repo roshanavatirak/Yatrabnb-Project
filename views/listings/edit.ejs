@@ -1,0 +1,121 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h3>Edit your Listing</h3>
+        <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+            
+            <!-- Title Field -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required />
+                <div class="invalid-feedback">
+                    Please provide a title.
+                </div>
+            </div>
+
+            <!-- Description Field -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="listing[description]" class="form-control" required><%= listing.description %></textarea>
+                <div class="invalid-feedback">
+                    Please provide a short description.
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold d-block mb-2">Original Listing Image</label>
+                <div class="border rounded shadow-sm d-inline-block" style="width: 320px; height: 180px; overflow: hidden;">
+                  <img 
+                    src="<%= listing.image.url.replace('/upload/', '/upload/w_320,h_180,c_fill,q_40/') %>" 
+                    alt="Listing Image Preview"
+                    class="img-fluid"
+                    style="object-fit: cover; width: 100%; height: 100%;"
+                  />
+                </div>
+              </div>
+              
+              
+            <!-- Image URL Field -->
+            <div class="mb-3">
+                <label for="imageUrl" class="form-label">Upload New Image</label>
+                <input name="listing.image" type="file" class="form-control" >
+                <div class="invalid-feedback">
+                    Please provide a valid image URL.
+                </div>
+            </div>
+
+            <!-- Price and Country Fields -->
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required min="0">
+                    <div class="invalid-feedback">
+                        Please provide a valid price.
+                    </div>
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="country" class="form-label">Country</label>
+                    <select name="listing[country]" id="country-select" class="form-control" required>
+                        <option value="">Select a country</option>
+                
+                        <% 
+                        const countries = [
+                            "Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
+                            "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
+                            "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados",
+                            "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+                            "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei",
+                            "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia",
+                            "Cameroon", "Canada", "Central African Republic", "Chad", "Chile",
+                            "China", "Colombia", "Comoros", "Congo", "Costa Rica",
+                            "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark",
+                            "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
+                            "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini",
+                            "Ethiopia", "Fiji", "Finland", "France", "Gabon",
+                            "Gambia", "Georgia", "Germany", "Ghana", "Greece",
+                            "Grenada", "Guatemala", "Guinea", "Haiti", "Honduras",
+                            "Hungary", "Iceland", "India", "Indonesia", "Iran",
+                            "Iraq", "Ireland", "Italy", "Jamaica", "Japan",
+                            "Jordan", "Kazakhstan", "Kenya", "South Korea", "Kuwait",
+                            "Latvia", "Lebanon", "Lithuania", "Luxembourg", "Madagascar",
+                            "Malaysia", "Mexico", "Morocco", "Nepal", "Netherlands",
+                            "New Zealand", "Nigeria", "Norway", "Pakistan", "Philippines",
+                            "Poland", "Portugal", "Qatar", "Russia", "Saudi Arabia",
+                            "Singapore", "South Africa", "Spain", "Sri Lanka", "Sweden",
+                            "Switzerland", "Thailand", "Turkey", "United Arab Emirates",
+                            "United Kingdom", "United States", "Vietnam", "Zambia", "Zimbabwe"
+                        ];
+                
+                        countries.forEach(c => { 
+                        %>
+                            <option value="<%= c %>" <%= listing.country === c ? 'selected' : '' %>><%= c %></option>
+                        <% }); %>
+                    </select>
+                
+                    <div class="invalid-feedback">
+                        Please provide a valid country.
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Location Field -->
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please provide a location.
+                </div>
+            </div>
+
+            <br /><br />
+
+            <button class="btn btn-dark w-100 add-btn edit-btn mt-3">Edit</button>
+            <br><br><br>
+        </form>
+    </div>
+</div>
+
+

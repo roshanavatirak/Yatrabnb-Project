@@ -1,0 +1,142 @@
+<% layout("/layouts/boilerplate") %>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffe4ec, #fff6f9);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    overflow-x: hidden;
+  }
+
+  .login-container {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+    animation: slideFade 0.9s ease-in-out;
+  }
+
+  @keyframes slideFade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .login-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 50px 40px;
+    box-shadow: 0 20px 50px rgba(255, 65, 108, 0.1);
+    backdrop-filter: blur(8px);
+    width: 100%;
+    max-width: 500px;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: scale(0.98) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .login-card h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .form-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #444;
+  }
+
+  .form-control {
+    border-radius: 14px;
+    padding: 14px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+    box-shadow: none;
+  }
+
+  .form-control:focus {
+    border-color: #ff416c;
+    box-shadow: 0 0 8px rgba(255, 65, 108, 0.3);
+  }
+
+  .btn-login {
+    margin-top: 25px;
+    padding: 14px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+    background: linear-gradient(270deg, #ff416c, #ff4b2b, #ff416c);
+    background-size: 400% 400%;
+    animation: gradientFlow 5s ease infinite;
+    box-shadow: 0 10px 24px rgba(255, 65, 108, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(255, 65, 108, 0.4);
+  }
+
+  @keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .footer-note a {
+    color: #ff416c;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  @media (max-width: 576px) {
+    .login-card {
+      padding: 40px 25px;
+    }
+  }
+</style>
+
+<div class="login-container">
+  <div class="login-card">
+    <h1>Login to YatraBnB</h1>
+    <form action="/login" method="POST" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input name="username" id="username" type="text" class="form-control" placeholder="your_travel_name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input name="password" id="password" type="password" class="form-control" placeholder="••••••••••" required>
+      </div>
+
+      <button class="btn-login" type="submit">Login Now</button>
+    </form>
+
+    <div class="footer-note">
+      New to YatraBnB? <a href="/signup">Create an account</a>
+    </div>
+  </div>
+</div>

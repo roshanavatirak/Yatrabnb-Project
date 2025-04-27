@@ -1,0 +1,331 @@
+body{
+
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container{
+    flex: 1;
+}
+
+.navbar{
+    height: 5rem;
+}
+
+.fa-compass{
+    color:#fe424d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color:#222222 !important;
+}
+
+/* Footer */
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a :hover{
+    text-decoration: underline;
+    
+}
+
+.f-info-links, .f-info-socials, .f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.f-info{
+    text-align: center;
+    height: 8rem;
+    background-color: #ebebeb;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+/* Cards */
+.card{
+    border:none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;        
+    height: 350px;  
+    object-fit: cover !important;  /* Crop excess part */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease, opacity 0.4s ease, background-color 0.4s ease !important; /* Smooth transition */
+}
+
+.card-img-top::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3); /* Shine effect */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card-img-top:hover {
+  transform: scale(1) translateY(-12px) rotate(0deg) !important; /* More zoom, higher lift, more rotate */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5) !important; /* Even deeper shadow for premium effect */
+  filter: brightness(1.15) contrast(1.2) saturate(1.4) !important; /* Ultra bright and rich colors */
+  opacity: 0.9 !important; /* Slight fade for elegance */
+  border-radius: 1rem !important; /* Keep rounded corners */
+}
+
+.card-img-top:hover::after {
+  opacity: 1; /* Show shine effect */
+}
+
+/* Optional: Add a little motion blur */
+.card-img-top:hover {
+  filter: brightness(1.15) contrast(1.2) saturate(1.4) blur(0.1px) !important; /* Motion blur + color pop */
+}
+
+
+.card-body{
+    padding: 0 !important;
+}
+
+.card-text p {
+    font-weight: 400 !important;
+}
+
+.listing-link {
+    text-decoration: none !important;
+    color: #222222;  /* Dark gray (better than black for readability) */
+    transition: color 0.3s ease;
+}
+
+.listing-link:hover {
+    color: #B12704; /* Rich red for a premium feel */
+}
+
+/* Card Effects */
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+/* New Page */
+.add-btn {
+    background-color: #B12704 !important; /* Bold Red */
+    border: none;
+    color: white; /* Ensures text is visible */
+    padding: 10px 20px; /* Better click area */
+    font-size: 16px; /* Readable text */
+    font-weight: bold;
+    border-radius: 5px; /* Smooth edges */
+    cursor: pointer; /* Indicates it's clickable */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-btn:hover {
+    background-color: #8f1f03; /* Slightly darker on hover */
+}   
+
+/* Edit Page */
+.edit-btn{
+    background-color: #B12704 !important; /* Bold Red */
+    border: none;
+    color: white; /* Ensures text is visible */
+    padding: 10px 20px; /* Better click area */
+    font-size: 16px; /* Readable text */
+    font-weight: bold;
+    border-radius: 5px; /* Smooth edges */
+    cursor: pointer; /* Indicates it's clickable */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.edit-btn:hover{
+    background-color: #8f1f03;
+}
+
+/* Show Page */
+.show-img{
+    height: 30vh;
+}
+
+
+.alert .fas {
+    font-size: 32px;   /* Adjust icon size */
+    margin-right: 15px; /* Space between icon and text */
+}
+
+
+.card-img-top {
+  height: 18rem;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.listing-link {
+  text-decoration: none;
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.listing-link:hover  .card-title {
+  color: #b12704;
+}
+
+@keyframes slideDown {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+
+
+
+
+  .rating-card {
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .rating-card:hover {
+    background-color: #f0f0f0;
+    border-color: #aaa;
+    transform: scale(1.05); /* Smooth zoom-in effect */
+  }
+
+  .card-img-top:hover {
+    transform: scale(1.02);
+    transition: 0.3s ease-in-out;
+}
+
+
+
+  #map {
+    height: 400px;
+    width: 100%;
+  }
+
+
+/* Navbar */
+.navbar-brand i {
+    font-size: 1.5rem;
+  }
+  
+  .navbar-nav .nav-link {
+    transition: all 0.3s ease;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #ff385c !important;
+  }
+  
+  .btn-outline-dark:hover {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+  }
+  
+  .dropdown-toggle::after {
+    display: none;
+  }
+  
+
+  /* footer */
+  .footer-custom a {
+    transition: all 0.3s ease;
+  }
+  
+  .footer-custom a:hover {
+    color: #ff385c !important; /* Airbnb red */
+    text-decoration: underline;
+  }
+  
+  .f-info-brand {
+    font-size: 0.95rem;
+  }
+  
+  .f-info-socials i:hover {
+    color: #ff385c;
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+  }
+  
+  @media (max-width: 576px) {
+    .f-info-links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+  
+
+  /* Navbar Links Hover Effect */
+.navbar-nav .nav-link:hover {
+  color: #dc3545 !important; /* Change color to Bootstrap danger red */
+  text-decoration: underline;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Buttons Hover */
+.navbar-nav .btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 8px 16px rgba(220, 53, 69, 0.3); /* Slight red glow */
+}
+
+/* Dropdown Smooth Open */
+.dropdown-menu {
+  transition: all 0.4s ease;
+  transform: translateY(10px);
+  opacity: 0;
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.dropdown:hover .dropdown-menu {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Dropdown Item Hover */
+.dropdown-menu .dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #dc3545;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Smooth transition for navbar-toggler (optional) */
+.navbar-toggler {
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}

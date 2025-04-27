@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm border-bottom sticky-top py-3">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand fs-4 fw-bold text-danger" href="/listings">
+      <i class="fa-regular fa-compass me-2"></i>Yatrabnb
+    </a>
+
+    <!-- Toggler button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <!-- Left: Explore -->
+      <ul class="navbar-nav me-3">
+        <li class="nav-item">
+          <a class="nav-link fw-semibold text-dark" href="/listings">Explore</a>
+        </li>
+      </ul>
+
+      <!-- Center: Search Bar -->
+      <form class="d-flex mx-auto my-2 my-md-0" style="width: 100%; max-width: 400px;">
+        <input class="form-control me-2 rounded-pill" type="search" placeholder="Search destinations..." aria-label="Search">
+        <button class="btn btn-danger rounded-pill px-4" type="submit">Search</button>
+      </form>
+
+      <!-- Right: Login/Signup/Profile -->
+      <ul class="navbar-nav ms-auto align-items-center gap-3 mt-3 mt-md-0">
+
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/listings/new"><b>Yatrabnb your home</b></a>
+        </li>
+
+        <% if (!currUser) { %>
+          <li class="nav-item">
+            <a class="btn btn-outline-dark px-4 rounded-pill" href="/signup"><b>Sign up</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-danger px-4 rounded-pill text-white" href="/login"><b>Log in</b></a>
+          </li>
+        <% } %>
+
+        <% if (currUser) { %>
+          <li class="nav-item dropdown">
+            <a class="btn btn-light border rounded-pill px-3 dropdown-toggle" href="#" id="dropdownMenuLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-user-circle me-2"></i> <%= currUser.username %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" href="/profile">Profile</a></li>
+              <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="/logout"><b>Log out</b></a></li>
+            </ul>
+          </li>
+        <% } %>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar-collapse {
+    background-color: white; /* Ensure dropdown area is white */
+    padding: 1rem; /* Add padding inside collapsed menu */
+    z-index: 1000; /* Make sure navbar stays above content */
+  }
+
+
+  
+</style>
+
