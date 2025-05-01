@@ -17,11 +17,29 @@ const passport= require("passport");
 const LocalStrategy = require("passport-local");
 const User= require("./models/user.js");
 
+
   // Parses form data
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+
+require("dotenv").config(); // Ensure this is at the top
+require("./auth/passport-config")(passport); // Import the config
+
+
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "https://yatrabnb-project.onrender.com/auth/google/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+  // Use the profile information for login or account creation
+  return done(null, profile);
+}));
+
 
 const moment = require("moment");
 app.locals.moment = moment;
@@ -87,8 +105,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 
 
