@@ -477,6 +477,12 @@
           
         </div>
       </div>
+
+      <div class="d-flex justify-content-end align-items-center mb-3">
+        <label class="form-check-label me-2" for="taxToggle"><strong>Include 18% GST</strong></label>
+        <input class="form-check-input" type="checkbox" id="taxToggle" onchange="toggleGST()" />
+      </div>
+      
       
       <div class="row g-4  row-cols-1 row-cols-sm-2 row-cols-md-3">
         <% for(let listing of allListings) { %>
@@ -491,10 +497,14 @@
                 <div class="card-body">
                   <h5 class="card-title"><%= listing.title %></h5>
                   <p class="card-text">
-                    &#8377;<%= listing.price.toLocaleString("en-IN") %> for 5 nights
-                    <i class="tax-info" style="display: none;">&nbsp; &nbsp;+18% GST</i>
+                    ₹<span class="original-price"><%= listing.price %></span> for 5 nights
+                    <i class="tax-info" style="display: none;">&nbsp;&nbsp;+18% GST</i>
+                  </p>
+                  <p class="card-text total-after-tax" style="display: none;">
+                    Total with GST: ₹<span class="price-with-tax"></span>
                   </p>
                 </div>
+                
               </div>
             </a>
           </div>
@@ -503,27 +513,31 @@
     </div>
   
     <script>
-      function toggleTotal() {
-        let totalElement = document.getElementById('totalAfterTax');
-        let taxInfoElements = document.getElementsByClassName('tax-info');
-        let switchElement = document.getElementById('taxToggle');
+      function toggleGST() {
+        const toggle = document.getElementById('taxToggle');
+        const cards = document.querySelectorAll('.card-body');
     
-        // If switch is checked
-        if (switchElement.checked) {
-          totalElement.style.display = 'block'; // show total after tax
-          for (let info of taxInfoElements) {
-            info.style.display = 'inline'; // show +18% GST
+        cards.forEach(card => {
+          const originalPriceElem = card.querySelector('.original-price');
+          const taxInfo = card.querySelector('.tax-info');
+          const totalAfterTax = card.querySelector('.total-after-tax');
+          const priceWithTax = card.querySelector('.price-with-tax');
+    
+          const originalPrice = parseFloat(originalPriceElem.textContent.replace(/,/g, ''));
+    
+          if (toggle.checked) {
+            const total = originalPrice * 1.18;
+            priceWithTax.textContent = total.toLocaleString("en-IN", { minimumFractionDigits: 2 });
+            taxInfo.style.display = 'inline';
+            totalAfterTax.style.display = 'block';
+          } else {
+            taxInfo.style.display = 'none';
+            totalAfterTax.style.display = 'none';
           }
-        } else {
-          totalElement.style.display = 'none'; // hide total after tax
-          for (let info of taxInfoElements) {
-            info.style.display = 'none'; // hide +18% GST
-          }
-        }
+        });
       }
     </script>
     
-
 
 
      
