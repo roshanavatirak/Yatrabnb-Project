@@ -460,25 +460,12 @@
       <div class="container mt-4">
         <div class="d-flex justify-content-end align-items-center gap-3 mb-3">
       
-          <div class="d-flex align-items-center gap-2 tax-toggle">
+          <div class="d-flex align-items-center gap-2 tax-toggle ">
             <div class="form-check form-switch m-0">
               <input class="form-check-input" type="checkbox" id="taxToggle" onchange="toggleTotal()">
             </div>
-            <label class="form-check-label" for="taxToggle" style="margin-bottom: 0;">
-              <b>Display Total after Tax</b>
-            </label>
+            <label class="form-check-label" for="taxToggle" style="margin-bottom: 0;"><b>Display Total after Tax</b></label>
           </div>
-
-          
-<!-- Base Price (you can display this too) -->
-<p><b>Base Price:</b> ₹<span id="basePrice" data-baseprice="<%= listing.price %>"><%= listing.price %></span></p>
-
-<!-- GST Info (optional) -->
-<p class="tax-info" style="display: none;">+18% GST applicable</p>
-
-<!-- Total After Tax (hidden initially) -->
-<p id="totalAfterTax" style="display: none;"><b>Total after Tax:</b> ₹<span id="finalAmount"></span></p>
-
       
           <form method="GET" action="/listings/new" class="m-0">
             <button class="btn btn-danger">Create New Listing</button>
@@ -517,26 +504,20 @@
   
     <script>
       function toggleTotal() {
-        const totalElement = document.getElementById('totalAfterTax');
-        const taxInfoElements = document.getElementsByClassName('tax-info');
-        const switchElement = document.getElementById('taxToggle');
-        const basePriceEl = document.getElementById('basePrice');
-        const finalAmountEl = document.getElementById('finalAmount');
+        let totalElement = document.getElementById('totalAfterTax');
+        let taxInfoElements = document.getElementsByClassName('tax-info');
+        let switchElement = document.getElementById('taxToggle');
     
-        const basePrice = parseFloat(basePriceEl.getAttribute('data-baseprice'));
-        const gstRate = 0.18;
-        const totalWithTax = (basePrice + basePrice * gstRate).toFixed(2);
-    
+        // If switch is checked
         if (switchElement.checked) {
-          finalAmountEl.textContent = totalWithTax;
-          totalElement.style.display = 'block';
+          totalElement.style.display = 'block'; // show total after tax
           for (let info of taxInfoElements) {
-            info.style.display = 'inline';
+            info.style.display = 'inline'; // show +18% GST
           }
         } else {
-          totalElement.style.display = 'none';
+          totalElement.style.display = 'none'; // hide total after tax
           for (let info of taxInfoElements) {
-            info.style.display = 'none';
+            info.style.display = 'none'; // hide +18% GST
           }
         }
       }
