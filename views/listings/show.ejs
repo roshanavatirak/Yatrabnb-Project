@@ -9,15 +9,21 @@
 
         <!-- Card Body -->
         <div class="card-body">
-            <h3 class="card-title fw-bold"><%= listing.title %></h3>
-            <p class="card-text text-muted">
-              <span class="fw-semibold">Hosted by</span>
-              <span class="text-dark fw-bold d-inline-flex align-items-center gap-2">
-                  <%= listing.owner.username %> 
-                  <i class="bi bi-patch-check-fill text-primary"></i>
+          <h3 class="card-title fw-bold"><%= listing.title %></h3>
+          <p class="card-text text-muted">
+            <span class="fw-semibold">Hosted by</span>
+            <span class="text-dark fw-bold d-inline-flex align-items-center gap-2">
+                <%= listing.owner.username %> 
+                <i class="bi bi-patch-check-fill text-primary"></i>
+          
+                <% if (listing.owner.role === 'admin') { %>
                   <span class="badge bg-light border border-primary text-primary">Premium Host</span>
-              </span>
+                <% } else { %>
+                  <span class="badge bg-warning border border-warning text-dark">Gold Host</span>
+                <% } %>
+            </span>
           </p>
+          
           
           
             <p class="card-text"><%= listing.description %></p>
