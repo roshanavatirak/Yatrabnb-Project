@@ -330,63 +330,84 @@ body{
   box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
 }
 
-/* pop style */
+
 .popup-overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  transition: opacity 1s ease;
-  padding: 20px; /* add some padding so content doesn't stick to edges */
-  box-sizing: border-box;
+
+  /* fade-in animation */
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.popup-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .popup-content {
   position: relative;
-  max-width: 60%;    /* reduced from 90% to ~60% (around 30% smaller) */
-  max-height: 60%;   /* reduced height proportionally */
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  max-width: 60%;    /* reduced size */
+  max-height: 60%;   /* reduced size */
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  /* smooth scale-up on show */
+  transform: scale(1);
+  animation: popupScaleIn 0.5s ease forwards;
+  padding: 15px;
+}
+
+@keyframes popupScaleIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .popup-content img {
   width: 100%;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
   display: block;
+  user-select: none;
 }
 
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #e74c3c; /* nicer red */
+  top: 12px;
+  right: 12px;
+  background: #ff4d4f;
   color: white;
   border: none;
   font-size: 22px;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  transition: background-color 0.3s ease;
-}
-.close-btn:hover {
-  background: #c0392b;
+  box-shadow: 0 4px 10px rgba(255, 77, 79, 0.5);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.fade-out {
-  opacity: 0;
-  pointer-events: none;
+.close-btn:hover {
+  background-color: #d9363e;
+  transform: scale(1.15);
+  box-shadow: 0 6px 15px rgba(217, 54, 62, 0.7);
 }
 
